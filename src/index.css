@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700&family=DM+Sans:wght@400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Savoria — Editorial Terracotta design system */
+@layer base {
+  :root {
+    --background: 40 25% 95%;
+    --foreground: 20 15% 15%;
+
+    --card: 40 30% 98%;
+    --card-foreground: 20 15% 15%;
+
+    --popover: 40 30% 98%;
+    --popover-foreground: 20 15% 15%;
+
+    --primary: 14 55% 48%;
+    --primary-foreground: 40 30% 98%;
+
+    --secondary: 40 20% 90%;
+    --secondary-foreground: 20 15% 15%;
+
+    --muted: 40 15% 88%;
+    --muted-foreground: 20 10% 40%;
+
+    --accent: 35 40% 85%;
+    --accent-foreground: 20 15% 15%;
+
+    --destructive: 0 70% 50%;
+    --destructive-foreground: 40 30% 98%;
+
+    --border: 30 15% 85%;
+    --input: 30 15% 85%;
+    --ring: 14 55% 48%;
+
+    --radius: 1rem;
+
+    --cream: 40 35% 92%;
+    --terracotta: 14 55% 48%;
+    --olive: 70 20% 35%;
+    --whatsapp: 142 70% 45%;
+
+    --sidebar-background: 40 25% 95%;
+    --sidebar-foreground: 20 15% 15%;
+    --sidebar-primary: 14 55% 48%;
+    --sidebar-primary-foreground: 40 30% 98%;
+    --sidebar-accent: 35 40% 85%;
+    --sidebar-accent-foreground: 20 15% 15%;
+    --sidebar-border: 30 15% 85%;
+    --sidebar-ring: 14 55% 48%;
+  }
+}
+
+@layer base {
+  * { @apply border-border; }
+  body {
+    @apply bg-background text-foreground font-sans antialiased;
+  }
+  h1, h2, h3, h4 { @apply font-display; }
+}
