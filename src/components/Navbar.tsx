@@ -39,7 +39,7 @@ const Navbar = () => {
             </NavLink>
           ))}
           <Button asChild className="rounded-full bg-primary hover:bg-primary/90 text-primary-foreground">
-            <a href={WHATSAPP_URL} target="_blank" rel="noreferrer">
+            <a href="/shop" rel="noreferrer">
               Shop Today
             </a>
           </Button>

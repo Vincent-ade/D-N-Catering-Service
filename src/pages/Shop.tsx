@@ -2,11 +2,12 @@ import Navbar, { WHATSAPP_URL } from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import jollof from "@/assets/jollof.jpg";
-import smallChops from "@/assets/small-chops.jpg";
-import buffet from "@/assets/buffet.jpg";
 import chairs from "@/assets/chairs.jpg";
 import plates from "@/assets/plates.jpg";
 import cooler from "@/assets/cooler.jpg";
+import akara from "@/assets/akara.jpg";
+import ofadarice from "@/assets/Ofadarice.png";
+
 
 type Product = {
   name: string;
@@ -18,15 +19,17 @@ type Product = {
 
 const products: Product[] = [
   { name: "Party Jollof Rice", desc: "Smoky, perfectly seasoned — serves up to 50 guests.", price: "₦45,000", image: jollof, category: "Food" },
-  { name: "Small Chops Platter", desc: "Puff-puff, samosa, spring rolls & gizzard skewers.", price: "₦25,000", image: smallChops, category: "Food" },
-  { name: "Full Catering Package", desc: "Complete buffet spread for 100 guests.", price: "₦350,000", image: buffet, category: "Food" },
+  { name: "Akara and Pap", desc: "Puff-puff, samosa, spring rolls & gizzard skewers.", price: "₦25,000", image: akara, category: "Food" },
+  { name: "Ofada Rice", desc: "Complete buffet spread for 100 guests.", price: "₦350,000", image: ofadarice, category: "Food" },
+    { name: "Ofada Rice", desc: "Complete buffet spread for 100 guests.", price: "₦350,000", image: ofadarice, category: "Food" },
   { name: "Gold Chiavari Chairs", desc: "Elegant gold event chairs — per piece.", price: "₦1,500", image: chairs, category: "Rentals" },
   { name: "Gold-Rim Dinner Plates", desc: "Premium porcelain plate set — per piece.", price: "₦500", image: plates, category: "Rentals" },
+  { name: "Beverage Cooler", desc: "Stainless steel dispenser, 50L capacity.", price: "₦8,000", image: cooler, category: "Rentals" },
   { name: "Beverage Cooler", desc: "Stainless steel dispenser, 50L capacity.", price: "₦8,000", image: cooler, category: "Rentals" },
 ];
 
 const orderUrl = (name: string) =>
-  `${WHATSAPP_URL}?text=${encodeURIComponent(`Hi Savoria, I want to order ${name}.`)}`;
+  `${WHATSAPP_URL}?text=${encodeURIComponent(`Hi D & N, I want to order *${name}*.`)}`;
 
 const Shop = () => (
   <div className="min-h-screen bg-background">
@@ -43,7 +46,7 @@ const Shop = () => (
     {(["Food", "Rentals"] as const).map((cat) => (
       <section key={cat} className="container pb-16">
         <h2 className="font-display text-3xl mb-8">{cat}</h2>
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {products.filter((p) => p.category === cat).map((p) => (
             <article key={p.name} className="bg-card rounded-3xl overflow-hidden border border-border hover:shadow-xl transition-all hover:-translate-y-1">
               <img src={p.image} alt={p.name} width={1024} height={1024} loading="lazy" className="w-full aspect-square object-cover"/>

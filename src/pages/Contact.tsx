@@ -6,9 +6,12 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Phone, Mail, MapPin, Instagram, Facebook, MessageCircle } from "lucide-react";
 import { toast } from "sonner";
+import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
 const Contact = () => {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const headerSection = useScrollAnimation();
+  const contentSection = useScrollAnimation();
 
   const submit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -20,14 +23,14 @@ const Contact = () => {
     <div className="min-h-screen bg-background">
       <Navbar />
 
-      <section className="container py-16 text-center">
-        <span className="text-xs tracking-[0.2em] uppercase text-primary font-medium">Get in touch</span>
-        <h1 className="font-display text-5xl md:text-6xl mt-3">Let's plan something special</h1>
+      <section ref={headerSection.ref} className="container py-16 text-center">
+        <span className={`text-xs tracking-[0.2em] uppercase text-primary font-medium ${headerSection.isVisible ? "animate-fade-in" : "opacity-0"}`}>Get in touch</span>
+        <h1 className={`font-display text-5xl md:text-6xl mt-3 ${headerSection.isVisible ? "animate-fade-up" : "opacity-0"}`}>Let's plan something special</h1>
       </section>
 
-      <section className="container grid lg:grid-cols-2 gap-12 pb-20">
+      <section ref={contentSection.ref} className="container grid lg:grid-cols-2 gap-12 pb-20">
         <div className="space-y-6">
-          <div className="bg-card border border-border rounded-3xl p-8 space-y-5">
+          <div className={`bg-card border border-border rounded-3xl p-8 space-y-5 ${contentSection.isVisible ? "animate-slide-in-left" : "opacity-0"}`} style={{ animationDuration: "0.8s" }}>
             <div className="flex items-start gap-4">
               <div className="p-3 rounded-2xl bg-accent text-primary"><Phone size={20}/></div>
               <div>
@@ -58,19 +61,19 @@ const Contact = () => {
             </div>
           </div>
 
-          <Button asChild size="lg" className="w-full rounded-full bg-whatsapp hover:bg-whatsapp/90 text-white">
+          <Button asChild size="lg" className={`w-full rounded-full bg-whatsapp hover:bg-whatsapp/90 text-white ${contentSection.isVisible ? "animate-bounce-in" : "opacity-0"}`} style={{ animationDelay: contentSection.isVisible ? "0.2s" : "0s" }}>
             <a href={WHATSAPP_URL} target="_blank" rel="noreferrer">
               <MessageCircle className="mr-2" size={20}/> Chat on WhatsApp
             </a>
           </Button>
 
-          <div className="flex gap-3 justify-center">
+          <div className={`flex gap-3 justify-center ${contentSection.isVisible ? "animate-fade-in" : "opacity-0"}`} style={{ animationDelay: contentSection.isVisible ? "0.3s" : "0s" }}>
             <a href="https://www.instagram.com/dn_event/" aria-label="Instagram" className="p-3 rounded-full bg-accent text-foreground hover:bg-primary hover:text-primary-foreground transition"><Instagram size={20}/></a>
             <a href="#" aria-label="Facebook" className="p-3 rounded-full bg-accent text-foreground hover:bg-primary hover:text-primary-foreground transition"><Facebook size={20}/></a>
           </div>
         </div>
 
-        <form onSubmit={submit} className="bg-card border border-border rounded-3xl p-8 space-y-5">
+        <form onSubmit={submit} className={`bg-card border border-border rounded-3xl p-8 space-y-5 ${contentSection.isVisible ? "animate-slide-in-right" : "opacity-0"}`} style={{ animationDuration: "0.8s" }}>
           <h2 className="font-display text-2xl mb-2">Send us a mail</h2>
           <Input placeholder="Your name" value={form.name} onChange={(e)=>setForm({...form, name: e.target.value})} required className="rounded-xl"/>
           <Input type="email" placeholder="Your email" value={form.email} onChange={(e)=>setForm({...form, email: e.target.value})} required className="rounded-xl"/>
