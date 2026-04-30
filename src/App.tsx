@@ -30,7 +30,7 @@ const App = () => (
 
           
           {/* Admin login */}
-          <Route path="https://d-n-catering-service.vercel.app/admin/admin" element={<AdminLogin />} />
+          <Route path="https://d-n-catering-service.vercel.app/admin" element={<AdminLogin />} />
 
           {/* Admin dashboard — protected by AdminLayout */}
           <Route path="https://d-n-catering-service.vercel.app/admin" element={<AdminLayout />}>
