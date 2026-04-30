@@ -1,4 +1,5 @@
 import { useState } from "react";
+import emailjs from "@emailjs/browser";
 import Navbar, { WHATSAPP_URL } from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -8,15 +9,51 @@ import { Phone, Mail, MapPin, Instagram, Facebook, MessageCircle } from "lucide-
 import { toast } from "sonner";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
-const Contact = () => {
-  const [form, setForm] = useState({ name: "", email: "", message: "" });
-  const headerSection = useScrollAnimation();
-  const contentSection = useScrollAnimation();
+// ── EmailJS config ─────────────────────────────────────────────────────────
+const EMAILJS_SERVICE_ID  = "service_jen8v2o";
+const EMAILJS_TEMPLATE_ID = "template_qp5i9ot";
+const EMAILJS_PUBLIC_KEY  = "9GHzvPJRcXCegzPBP";
 
-  const submit = (e: React.FormEvent) => {
+const Contact = () => {
+  const [form, setForm]       = useState({ name: "", email: "", message: "" });
+  const [sending, setSending] = useState(false);
+  const headerSection         = useScrollAnimation();
+  const contentSection        = useScrollAnimation();
+
+  const submit = async (e: React.FormEvent) => {
     e.preventDefault();
-    toast.success("Thanks! We'll be in touch shortly.");
-    setForm({ name: "", email: "", message: "" });
+
+    // Stricter email validation
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    if (!emailRegex.test(form.email)) {
+      toast.error("Please enter a valid email address.");
+      return;
+    }
+
+    // Block obviously fake domains
+    const fakeDomains = ["jnc.com", "test.com", "fake.com", "example.com", "abc.com", "xyz.com"];
+    const domain = form.email.split("@")[1]?.toLowerCase();
+    if (fakeDomains.includes(domain)) {
+      toast.error("Please enter a real email address.");
+      return;
+    }
+
+    setSending(true);
+    try {
+      await emailjs.send(
+        EMAILJS_SERVICE_ID,
+        EMAILJS_TEMPLATE_ID,
+        { from_name: form.name, from_email: form.email, message: form.message },
+        EMAILJS_PUBLIC_KEY
+      );
+      toast.success("Message sent! We'll be in touch shortly.");
+      setForm({ name: "", email: "", message: "" });
+    } catch (error) {
+      console.error("EmailJS error:", error);
+      toast.error("Something went wrong. Please try again or contact us directly.");
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
@@ -75,11 +112,35 @@ const Contact = () => {
 
         <form onSubmit={submit} className={`bg-card border border-border rounded-3xl p-8 space-y-5 ${contentSection.isVisible ? "animate-slide-in-right" : "opacity-0"}`} style={{ animationDuration: "0.8s" }}>
           <h2 className="font-display text-2xl mb-2">Send us a mail</h2>
-          <Input placeholder="Your name" value={form.name} onChange={(e)=>setForm({...form, name: e.target.value})} required className="rounded-xl"/>
-          <Input type="email" placeholder="Your email" value={form.email} onChange={(e)=>setForm({...form, email: e.target.value})} required className="rounded-xl"/>
-          <Textarea placeholder="Tell us about your event..." rows={5} value={form.message} onChange={(e)=>setForm({...form, message: e.target.value})} required className="rounded-xl"/>
-          <Button type="submit" className="w-full rounded-full bg-primary hover:bg-primary/90 text-primary-foreground">
-            Send Message
+          <Input
+            placeholder="Your name"
+            value={form.name}
+            onChange={(e) => setForm({ ...form, name: e.target.value })}
+            required
+            className="rounded-xl"
+          />
+          <Input
+            type="email"
+            placeholder="Your email"
+            value={form.email}
+            onChange={(e) => setForm({ ...form, email: e.target.value })}
+            required
+            className="rounded-xl"
+          />
+          <Textarea
+            placeholder="Tell us about your event..."
+            rows={5}
+            value={form.message}
+            onChange={(e) => setForm({ ...form, message: e.target.value })}
+            required
+            className="rounded-xl"
+          />
+          <Button
+            type="submit"
+            disabled={sending}
+            className="w-full rounded-full bg-primary hover:bg-primary/90 text-primary-foreground"
+          >
+            {sending ? "Sending..." : "Send Message"}
           </Button>
         </form>
       </section>
