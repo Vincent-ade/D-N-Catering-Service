@@ -8,6 +8,10 @@ import About from "./pages/About.tsx";
 import Shop from "./pages/Shop.tsx";
 import Contact from "./pages/Contact.tsx";
 import NotFound from "./pages/NotFound.tsx";
+import AdminLogin     from "@/pages/AdminLogin";
+import AdminLayout    from "@/components/admin/AdminLayout";
+import AdminDashboard from "@/pages/admin/AdminDashboard";
+import AdminProducts  from "@/pages/admin/AdminProducts";
 
 const queryClient = new QueryClient();
 
@@ -23,6 +27,18 @@ const App = () => (
           <Route path="/shop" element={<Shop />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="*" element={<NotFound />} />
+
+          
+          {/* Admin login */}
+          <Route path="/admin" element={<AdminLogin />} />
+
+          {/* Admin dashboard — protected by AdminLayout */}
+          <Route path="/admin" element={<AdminLayout />}>
+            <Route path="dashboard" element={<AdminDashboard />} />
+            <Route path="orders"    element={<AdminDashboard />} />
+            <Route path="food"      element={<AdminProducts category="Food" />} />
+            <Route path="rentals"   element={<AdminProducts category="Rentals" />} />
+          </Route>
         </Routes>
       </BrowserRouter>
     </TooltipProvider>
