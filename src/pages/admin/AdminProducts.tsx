@@ -89,6 +89,13 @@ export default function AdminProducts({ category }: AdminProductsProps) {
   // ── Save product ─────────────────────────────────────────────────────────
   async function saveProduct() {
     if (!form.name.trim() || !form.price.trim()) return;
+      
+    const numericPrice = form.price.replace(/[₦,\s]/g, "");
+    if (isNaN(Number(numericPrice)) || numericPrice === "") {
+      alert("Please enter a valid price (numbers only, e.g. 45000 or 45,000)");
+      return;
+    }
+
     setSaving(true);
 
     const payload = {
