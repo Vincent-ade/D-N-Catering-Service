@@ -93,7 +93,7 @@ export default function AdminProducts({ category }: AdminProductsProps) {
 
     const payload = {
       name: form.name,
-      price: form.price,
+      price: form.price.startsWith("₦") ? form.price : `₦${form.price}`,
       description: form.description,
       category: form.category,
       available: form.available,
