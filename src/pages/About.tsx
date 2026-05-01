@@ -119,7 +119,7 @@ const About = () => {
           D & N began in 2010 as a small home kitchen in Lagos, where our matriarch cooked for friends, family, and neighbors. Word spread fast — and what started as plates of jollof became Nigeria's most heartfelt catering and event company.
         </p>
         <p>
-          Today, three generations work side by side to bring warmth, tradition, and modern elegance to every event we touch.
+          Today, we together as a family work side by side to bring warmth, tradition, and modern elegance to every event we touch.
         </p>
       </div>
     </section>
@@ -193,10 +193,10 @@ const About = () => {
       <div className={`space-y-6 text-foreground/80 ${founderSection.isVisible ? "animate-slide-in-right" : "opacity-0"}`} style={{ animationDuration: "0.8s" }}>
         <h1 className={`font-display text-5xl md:text-6xl mt-3 ${founderSection.isVisible ? "animate-fade-up" : "opacity-0"}`} style={{ animationDelay: "0.2s" }}>Mrs. Temitayo</h1>
         <p className={`text-lg ${founderSection.isVisible ? "animate-fade-in" : "opacity-0"}`} style={{ animationDelay: "0.3s" }}>
-          D & N began in 2010 as a small home kitchen in Lagos, where our matriarch cooked for friends, family, and neighbors. Word spread fast — and what started as plates of jollof became Nigeria's most heartfelt catering and event company.
+          She has devoted her life to serving people food across the world, pouring her heart, time, and energy into every aspect of her work. Her passion goes beyond cooking; she is deeply committed to creating meaningful experiences for every client she serves. With a strong sense of responsibility, she ensures that each person is treated with respect, warmth, and genuine care.      
         </p>
         <p className={founderSection.isVisible ? "animate-fade-in" : "opacity-0"} style={{ animationDelay: "0.4s" }}>
-          Today, three generations work side by side to bring warmth, tradition, and modern elegance to every event we touch.
+          Through long hours, sacrifice, and unwavering dedication, she has built a reputation for excellence and reliability. Her ability to consistently deliver quality service has earned her trust and admiration, making her a remarkable figure whose impact continues to be felt wherever she goes.  
         </p>
       </div>
     </section>

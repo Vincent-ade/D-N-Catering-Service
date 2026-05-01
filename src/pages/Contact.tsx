@@ -9,7 +9,7 @@ import { Phone, Mail, MapPin, Instagram, Facebook, MessageCircle } from "lucide-
 import { toast } from "sonner";
 import { useScrollAnimation } from "@/hooks/useScrollAnimation";
 
-// ── EmailJS config ─────────────────────────────────────────────────────────
+// ── EmailJS config ──────
 const EMAILJS_SERVICE_ID  = "service_jen8v2o";
 const EMAILJS_TEMPLATE_ID = "template_qp5i9ot";
 const EMAILJS_PUBLIC_KEY  = "9GHzvPJRcXCegzPBP";

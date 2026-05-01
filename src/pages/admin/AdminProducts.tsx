@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { supabase } from "@/lib/supabase";
 
-// ── Types ─────────────────────────────────────────────────────────────────
+// ── Types ──────
 export interface Product {
   id: string;
   name: string;
@@ -27,7 +27,7 @@ const blankForm = (category: "Food" | "Rentals") => ({
   image_url: null as string | null,
 });
 
-// ── Component ─────────────────────────────────────────────────────────────
+// ── Component ─────
 export default function AdminProducts({ category }: AdminProductsProps) {
   const [products, setProducts]   = useState<Product[]>([]);
   const [loading, setLoading]     = useState(true);
@@ -39,7 +39,7 @@ export default function AdminProducts({ category }: AdminProductsProps) {
   const [uploading, setUploading] = useState(false);
   const fileRef                   = useRef<HTMLInputElement>(null);
 
-  // ── Load products from Supabase ─────────────────────────────────────────
+  // ── Load products from Supabase ──────
   useEffect(() => {
     fetchProducts();
   }, [category]);
@@ -60,7 +60,7 @@ export default function AdminProducts({ category }: AdminProductsProps) {
     setLoading(false);
   }
 
-  // ── Image upload to Supabase Storage ────────────────────────────────────
+  // ── Image upload to Supabase Storage ───
   async function handleImageUpload(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
     if (!file) return;
@@ -86,13 +86,13 @@ export default function AdminProducts({ category }: AdminProductsProps) {
     setUploading(false);
   }
 
-  // ── Save product ─────────────────────────────────────────────────────────
+  // ── Save product ──
   async function saveProduct() {
     if (!form.name.trim() || !form.price.trim()) return;
       
     const numericPrice = form.price.replace(/[₦,\s]/g, "");
     if (isNaN(Number(numericPrice)) || numericPrice === "") {
-      alert("Please enter a valid price (numbers only, e.g. 45000 or 45,000)");
+      alert("Please enter a valid price (numbers only, e.g. 45000)");
       return;
     }
 
@@ -125,7 +125,7 @@ export default function AdminProducts({ category }: AdminProductsProps) {
     fetchProducts();
   }
 
-  // ── Delete product ───────────────────────────────────────────────────────
+  // ── Delete product ────
   async function deleteProduct(id: string) {
     if (!window.confirm("Remove this item from the menu?")) return;
     const { error } = await supabase.from("products").delete().eq("id", id);
@@ -133,7 +133,7 @@ export default function AdminProducts({ category }: AdminProductsProps) {
     else fetchProducts();
   }
 
-  // ── Toggle availability ──────────────────────────────────────────────────
+  // ── Toggle availability ───
   async function toggleAvailable(id: string, current: boolean) {
     const { error } = await supabase
       .from("products")
@@ -143,7 +143,7 @@ export default function AdminProducts({ category }: AdminProductsProps) {
     else fetchProducts();
   }
 
-  // ── Modal helpers ─────────────────────────────────────────────────────────
+  // ── Modal helpers ────
   function openAdd() {
     setEditingId(null);
     setForm(blankForm(category));
@@ -180,7 +180,7 @@ export default function AdminProducts({ category }: AdminProductsProps) {
     p.description?.toLowerCase().includes(search.toLowerCase())
   );
 
-  // ── Render ────────────────────────────────────────────────────────────────
+  // ── Render ────
   return (
     <div>
       {/* Heading */}
