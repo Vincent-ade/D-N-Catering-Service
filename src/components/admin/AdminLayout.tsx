@@ -96,7 +96,7 @@ export default function AdminLayout() {
             })}
           </nav>
           <div className="px-6 py-3 border-t border-border flex items-center justify-between">
-            <a href="/" target="_blank" className="flex items-center gap-2 text-xs text-muted-foreground hover:text-foreground transition-colors">
+            <a href="https://d-n-catering-service.vercel.app/" target="_blank" className="flex items-center gap-2 text-xs text-muted-foreground hover:text-foreground transition-colors">
               <span>🌐</span> View public site
             </a>
             <button onClick={handleLogout} className="flex items-center gap-2 text-xs text-muted-foreground hover:text-red-500 transition-colors">
