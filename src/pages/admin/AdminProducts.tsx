@@ -100,7 +100,7 @@ export default function AdminProducts({ category }: AdminProductsProps) {
 
     const payload = {
       name: form.name,
-      price: form.price.startsWith("₦") ? form.price : `₦${form.price}`,
+      price: `₦${Number(form.price.replace(/[₦,\s]/g, "")).toLocaleString()}`,
       description: form.description,
       category: form.category,
       available: form.available,
