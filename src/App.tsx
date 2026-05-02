@@ -12,6 +12,7 @@ import AdminLogin     from "@/pages/AdminLogin";
 import AdminLayout    from "@/components/admin/AdminLayout";
 import AdminDashboard from "@/pages/admin/AdminDashboard";
 import AdminProducts  from "@/pages/admin/AdminProducts";
+import AdminOrders from "@/pages/admin/AdminOrders";
 import ScrollToTop from "./components/ScrollToTop";
 
 const queryClient = new QueryClient();
@@ -39,7 +40,7 @@ const App = () => (
           {/* Admin dashboard */}
           <Route path="/admin" element={<AdminLayout />}>
             <Route path="dashboard" element={<AdminDashboard />} />
-            <Route path="orders" element={<AdminDashboard />} />
+            <Route path="orders" element={<AdminOrders />} />
             <Route path="food" element={<AdminProducts category="Food" />} />
             <Route path="rentals" element={<AdminProducts category="Rentals" />} />
           </Route>
