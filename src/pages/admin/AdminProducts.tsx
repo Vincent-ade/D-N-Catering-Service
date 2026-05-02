@@ -283,7 +283,7 @@ export default function AdminProducts({ category }: AdminProductsProps) {
           className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4"
           onClick={e => e.target === e.currentTarget && closeModal()}
         >
-          <div className="bg-card border border-border rounded-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto">
+          <div className="bg-card border border-border rounded-2xl w-full max-w-lg max-h-[90vh] overflow-y-auto [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
 
             <div className="flex items-center justify-between px-6 pt-6 pb-0">
               <h2 className="font-display text-xl">
